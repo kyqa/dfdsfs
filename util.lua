@@ -72,12 +72,12 @@ function SetJersey(player, teamInfo, pos)
             --Setting Helmet
             uniform.Helmet.Mesh.TextureId = (teamInfo["Colors"]["Jersey"][pos]["HelmetTexture"])
 
-			if not uniform.Helmet.RightLogo then
-				return
-			else
-				uniform.Helmet.RightLogo.Decal.Texture = (teamInfo["Colors"]["Jersey"][pos]["Logo"])
-				uniform.Helmet.LeftLogo.Decal.Texture = (teamInfo["Colors"]["Jersey"][pos]["Logo"])
-			end
+	    if not uniform.Helmet.RightLogo then
+		return
+	    else
+		uniform.Helmet.RightLogo.Decal.Texture = (teamInfo["Colors"]["Jersey"][pos]["Logo"])
+		uniform.Helmet.LeftLogo.Decal.Texture = (teamInfo["Colors"]["Jersey"][pos]["Logo"])
+	    end
                         
             --Setting Upper Uniform
             uniform.ShoulderPads.Front.Team.Text = string.upper(teamInfo["Name"])
