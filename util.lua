@@ -348,5 +348,5 @@ for i,player in ipairs(Services["Players"]:GetPlayers()) do
     end)
 end
 
-game.StarterGui:SetCore("SendNotification", {Title = "enzo#9580", Text = "Success, Script Loaded. To use lock onto someone hold the RMB over their body.", Duration = 4,})
+game.StarterGui:SetCore("SendNotification", {Title = "enzo8000", Text = "Success, Jersey Script Loaded!", Duration = 4,})
 return module
