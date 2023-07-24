@@ -80,10 +80,10 @@ function SetJersey(player, teamInfo, pos)
 
             --Setting Helmet
             uniform.Helmet.Mesh.TextureId = (teamInfo["Colors"]["Jersey"][pos]["HelmetTexture"])
-            if uniform.Helmet.RightLogo then
-		Helm(player, teamInfo, pos)
-	    else
+            if not uniform.Helmet.RightLogo then
 		return
+	    else
+		Helm(player, teamInfo, pos)
 	    end
                         
             --Setting Upper Uniform
