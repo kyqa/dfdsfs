@@ -57,28 +57,29 @@ end
 
 function SetJersey(player, teamInfo, pos)
     pcall(function()
-        if not (player.Character) then
+        if not player.Character then
             return
         end
 
-        task.spawn(function()
-            local uniform = player.Character:WaitForChild("Uniform")
-            wait(0.5)
+        local uniform = player.Character:WaitForChild("Uniform")
+        wait(0.5)
 
-            if not (uniform:FindFirstChild("Helmet")) then
+        if not uniform:FindFirstChild("Helmet") then
+            return
+        end
+
+        local helmet = uniform:FindFirstChild("Helmet")
+
+        -- Create the if statement to handle the condition when 'Helmet' is not found.
+        if helmet then
+            -- The 'Helmet' object was found. You can access and manipulate it here.
+            local rightLogo = helmet:FindFirstChild("RightLogo")
+            if rightLogo then
+                uniform.Helmet.RightLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
+                uniform.Helmet.LeftLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
+            else
                 return
             end
-
-            --Setting Helmet
-            uniform.Helmet.Mesh.TextureId = (teamInfo["Colors"]["Jersey"][pos]["HelmetTexture"])
-
-	    if not uniform.Helmet.RightLogo.Decal then
-                return
-            end
-	    if uniform.Helmet.RightLogo.Decal then
-		uniform.Helmet.RightLogo.Decal.Texture = (teamInfo["Colors"]["Jersey"][pos]["Logo"])
-		uniform.Helmet.LeftLogo.Decal.Texture = (teamInfo["Colors"]["Jersey"][pos]["Logo"])
-	    end
 
             --Setting Upper Uniform
             uniform.ShoulderPads.Front.Team.Text = string.upper(teamInfo["Name"])
