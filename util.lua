@@ -84,8 +84,8 @@ function SetJersey(player, teamInfo, pos)
             local logo = uniform.Helmet:WaitForChild("RightLogo")
 
             if not logo then
-		        return
-	        else
+				return
+			else
 		        Helm(player, teamInfo, pos)
 	        end
                         
