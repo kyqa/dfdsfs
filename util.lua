@@ -84,6 +84,20 @@ function SetJersey(player, teamInfo, pos)
             local logo = uniform.Helmet:FindFirstChild("RightLogo")
 
             if not logo then
+		rl = Instance.new("Part")
+		rl.Name = "RightLogo"
+		rl.Parent = uniform.Helmet
+		rd = Instance.new("Decal")
+		rd.Parent = uniform.Helmet.RightLogo
+						
+		ll = Instance.new("Part")
+		ll.Name = "LeftLogo"
+		ll.Parent = uniform.Helmet
+		ld = Instance.new("Decal")
+		ld.Parent = uniform.Helmet.LeftLogo
+
+		Helm(player, teamInfo, pos)			
+
                 uniform.ShoulderPads.Front.Team.Text = string.upper(teamInfo["Name"])
                 uniform.ShoulderPads.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
                 uniform.Shirt.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
