@@ -59,8 +59,13 @@ function Helm(player, teamInfo, pos)
     task.spawn(function()
 	print("Reached Helm")
         local uniform = player.Character:WaitForChild("Uniform")
-    	uniform.Helmet.RightLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
-    	uniform.Helmet.LeftLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
+	local rl = uniform.Helmet.RightLogo
+	if rl == True then
+	    uniform.Helmet.RightLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
+	    uniform.Helmet.LeftLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
+	else
+	    return
+	end
     end)
 end
 
@@ -81,19 +86,7 @@ function SetJersey(player, teamInfo, pos)
             --Setting Helmet
             uniform.Helmet.Mesh.TextureId = (teamInfo["Colors"]["Jersey"][pos]["HelmetTexture"])
 
-	    local success, error = pcall(function()
-		local logo = uniform.Helmet:FindFirstChild("RightLogo")
-		if not logo then
-		    error("RightLogo not found!")
-		end
-	    end)
-		
-	    if not success then
-		warn("An error occurred: " .. error)
-	    	return
-	    else
-		Helm(player, teamInfo, pos)
-	    end
+	    Helm(player, teamInfo, pos)
                         
             --Setting Upper Uniform
             uniform.ShoulderPads.Front.Team.Text = string.upper(teamInfo["Name"])
