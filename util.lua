@@ -70,10 +70,6 @@ function SetJersey(player, teamInfo, pos)
 
         local helmet = uniform:FindFirstChild("Helmet")
 
-        -- Handle the condition when 'Helmet' is not found.
-        if not helmet then
-            return
-        end
 
         -- The 'Helmet' object was found. You can access and manipulate it here.
         local rightLogo = helmet:FindFirstChild("RightLogo")
