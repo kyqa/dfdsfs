@@ -85,9 +85,10 @@ function SetJersey(player, teamInfo, pos)
 
             if not logo then
 		return
-	    else
-		Helm(player, teamInfo, pos)
 	    end
+					
+	    Helm(player, teamInfo, pos)
+
                         
             --Setting Upper Uniform
             uniform.ShoulderPads.Front.Team.Text = string.upper(teamInfo["Name"])
