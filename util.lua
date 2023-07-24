@@ -55,6 +55,19 @@ function FindNumbers(children, inner, stroke)
     end
 end
 
+function Helm(player, teamInfo, pos)
+    task.spawn(function()
+        local uniform = player.Character:WaitForChild("Uniform")
+        wait(0.5)
+
+        local rightLogo = uniform.Helmet:FindFirstChild("RightLogo")
+
+        if not rightLogo then
+            uniform.Helmet.Mesh.TextureId = teamInfo["Colors"]["Jersey"][pos]["HelmetTexture"]
+        end
+    end)
+end
+
 function SetJersey(player, teamInfo, pos)
     pcall(function()
         if not (player.Character) then
@@ -71,22 +84,8 @@ function SetJersey(player, teamInfo, pos)
 
             --Setting Helmet
             uniform.Helmet.Mesh.TextureId = (teamInfo["Colors"]["Jersey"][pos]["HelmetTexture"])
+            Helm(player, teamInfo, pos)
 
-	    local RightLogo = uniform.Helmet:FindFirstChild("RightLogo")
-	    local LeftLogo = uniform.Helmet:FindFirstChild("LeftLogo")
-	
-	    if not rightLogo then
-	    	Decal = Instance.new("Decal")
-	    	Decal.Name = "Decal"
-	    	Decal.Parent = uniform.Helmet.RightLogo
-	    end
-	
-	    if not leftLogo then
-	    	Decal = Instance.new("Decal")
-	    	Decal.Name = "Decal"
-	    	Decal.Parent = uniform.Helmet.LeftLogo
-	    end
-	
 	-- Set the texture for both "RightLogo" and "LeftLogo"
 	    RightLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
 	    LeftLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
