@@ -1,15 +1,3 @@
---[[
-This module contains all of the features focusing on enhancing the Football Fusion Enviroment.
-
-This file contains the following features:
-* Automatic Team and Kicker Jerseys
-* Stadium Colors
-* Field Decals (endzones, midfield)
-* Automatic Touchdown Songs
-
-Created by Supermrk (@supermrk)m
-]]
-
 local Services = {
     Storage = game:GetService("ReplicatedStorage"),
     Workspace = game:GetService("Workspace"),
