@@ -66,6 +66,7 @@ end
 
 function set(player, teamInfo, pos)
     task.spawn(function()
+	local uniform = player.Character:WaitForChild("Uniform")
 	uniform.ShoulderPads.Front.Team.Text = string.upper(teamInfo["Name"])
         uniform.ShoulderPads.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
         uniform.Shirt.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
