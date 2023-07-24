@@ -82,11 +82,15 @@ function SetJersey(player, teamInfo, pos)
             uniform.Helmet.Mesh.TextureId = (teamInfo["Colors"]["Jersey"][pos]["HelmetTexture"])
 
 	    local success, error = pcall(function()
-            	local logo = uniform.Helmet:WaitForChild("RightLogo")
-	    end
-
+		local logo = uniform.Helmet:FindFirstChild("RightLogo")
+		if not logo then
+		    error("RightLogo not found!")
+		end
+	    end)
+		
 	    if not success then
-		return
+		warn("An error occurred: " .. error)
+	    	return
 	    else
 		Helm(player, teamInfo, pos)
 	    end
