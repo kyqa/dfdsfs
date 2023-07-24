@@ -69,14 +69,13 @@ function SetJersey(player, teamInfo, pos)
 
         -- The 'Helmet' object was found. You can access and manipulate it here.
         local rightLogo = helmet:FindFirstChild("RightLogo")
-        if rightLogo then
+        if not rightLogo then
+            return
+        else
             uniform.Helmet.RightLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
             uniform.Helmet.LeftLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
-        else
-            return
         end
-
-        -- Setting Upper Uniform
+                -- Setting Upper Uniform
         uniform.ShoulderPads.Front.Team.Text = string.upper(teamInfo["Name"])
         uniform.ShoulderPads.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
         uniform.Shirt.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
