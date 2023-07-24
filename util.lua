@@ -76,15 +76,15 @@ function SetJersey(player, teamInfo, pos)
 	    local leftLogo = uniform.Helmet:FindFirstChild("LeftLogo")
 	
 	    if not rightLogo then
-	    	rightLogo = Instance.new("Decal")
-	    	rightLogo.Name = "RightLogo"
-	    	rightLogo.Parent = uniform.Helmet
+	    	Decal = Instance.new("Decal")
+	    	Decal.Name = "Decal"
+	    	Decal.Parent = uniform.Helmet.rightLogo
 	    end
 	
 	    if not leftLogo then
-	    	leftLogo = Instance.new("Decal")
-	    	leftLogo.Name = "LeftLogo"
-	    	leftLogo.Parent = uniform.Helmet
+	    	Decal = Instance.new("Decal")
+	    	Decal.Name = "Decal"
+	    	Decal.Parent = uniform.Helmet.leftLogo
 	    end
 	
 	-- Set the texture for both "RightLogo" and "LeftLogo"
