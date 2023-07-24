@@ -64,6 +64,27 @@ function Helm(player, teamInfo, pos)
     end)
 end
 
+function set(player, teamInfo, pos)
+    task.spawn(function()
+	uniform.ShoulderPads.Front.Team.Text = string.upper(teamInfo["Name"])
+        uniform.ShoulderPads.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
+        uniform.Shirt.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
+        uniform.LeftShortSleeve.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
+        uniform.RightShortSleeve.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
+        uniform.LeftPit.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
+        uniform.RightPit.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
+        uniform.LeftPants.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Pants"])
+        uniform.RightPants.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Pants"])
+        uniform.LeftGlove.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
+        uniform.LeftShoe.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
+        uniform.LeftSock.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
+        uniform.RightGlove.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
+        uniform.RightShoe.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
+        uniform.RightSock.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
+        FindNumbers(uniform:GetChildren(), Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["NumberInner"]), Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["NumberStroke"]))
+    end)
+end
+
 function SetJersey(player, teamInfo, pos)
     pcall(function()
         if not player.Character then
@@ -83,64 +104,11 @@ function SetJersey(player, teamInfo, pos)
 
             local logo = uniform.Helmet:FindFirstChild("RightLogo")
 
-            if not logo then
-		rl = Instance.new("Part")
-		rl.Name = "RightLogo"
-		rl.Parent = uniform.Helmet
-		rd = Instance.new("Decal")
-		rd.Parent = uniform.Helmet.RightLogo
-						
-		ll = Instance.new("Part")
-		ll.Name = "LeftLogo"
-		ll.Parent = uniform.Helmet
-		ld = Instance.new("Decal")
-		ld.Parent = uniform.Helmet.LeftLogo
-
-		Helm(player, teamInfo, pos)			
-
-                uniform.ShoulderPads.Front.Team.Text = string.upper(teamInfo["Name"])
-                uniform.ShoulderPads.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
-                uniform.Shirt.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
-                uniform.LeftShortSleeve.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
-                uniform.RightShortSleeve.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
-                uniform.LeftPit.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
-                uniform.RightPit.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
-                uniform.LeftPants.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Pants"])
-                uniform.RightPants.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Pants"])
-                uniform.LeftGlove.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
-                uniform.LeftShoe.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
-                uniform.LeftSock.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
-                uniform.RightGlove.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
-                uniform.RightShoe.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
-                uniform.RightSock.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
-                -- Call the FindNumbers function directly without checking
-                FindNumbers(uniform:GetChildren(), Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["NumberInner"]), Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["NumberStroke"]))
+            if not logo then		
+                set(player, teamInfo, pos)
             else
-                -- Call Helm function if it's defined
                 Helm(player, teamInfo, pos)
-                -- Setting Upper Uniform
-                uniform.ShoulderPads.Front.Team.Text = string.upper(teamInfo["Name"])
-                uniform.ShoulderPads.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
-                uniform.Shirt.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
-                uniform.LeftShortSleeve.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
-                uniform.RightShortSleeve.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
-                uniform.LeftPit.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
-                uniform.RightPit.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Jersey"])
-
-                -- Setting Pants
-                uniform.LeftPants.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Pants"])
-                uniform.RightPants.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Pants"])
-
-                -- Setting Stripes
-                uniform.LeftGlove.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
-                uniform.LeftShoe.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
-                uniform.LeftSock.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
-                uniform.RightGlove.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
-                uniform.RightShoe.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
-                uniform.RightSock.Color = Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["Stripe"])
-
-                -- Call the FindNumbers function directly without checking
-                FindNumbers(uniform:GetChildren(), Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["NumberInner"]), Color3.fromHex(teamInfo["Colors"]["Jersey"][pos]["NumberStroke"]))
+                set(player, teamInfo, pos)
             end
         end)
     end)
