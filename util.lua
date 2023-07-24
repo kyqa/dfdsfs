@@ -72,12 +72,24 @@ function SetJersey(player, teamInfo, pos)
             --Setting Helmet
             uniform.Helmet.Mesh.TextureId = (teamInfo["Colors"]["Jersey"][pos]["HelmetTexture"])
 
-	    if not uniform.Helmet:FindFirstChild("RightLogo") or not uniform.Helmet:FindFirstChild("LeftLogo") then
-        	return
+	    local rightLogo = uniform.Helmet:FindFirstChild("RightLogo")
+	    local leftLogo = uniform.Helmet:FindFirstChild("LeftLogo")
+	
+	    if not rightLogo then
+	    	rightLogo = Instance.new("Decal")
+	    	rightLogo.Name = "RightLogo"
+	    	rightLogo.Parent = uniform.Helmet
 	    end
-
-            uniform.Helmet.RightLogo.Decal.Texture = (teamInfo["Colors"]["Jersey"][pos]["Logo"])
-            uniform.Helmet.LeftLogo.Decal.Texture = (teamInfo["Colors"]["Jersey"][pos]["Logo"])
+	
+	    if not leftLogo then
+	    	leftLogo = Instance.new("Decal")
+	    	leftLogo.Name = "LeftLogo"
+	    	leftLogo.Parent = uniform.Helmet
+	    end
+	
+	-- Set the texture for both "RightLogo" and "LeftLogo"
+	    rightLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
+	    leftLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
                         
             --Setting Upper Uniform
             uniform.ShoulderPads.Front.Team.Text = string.upper(teamInfo["Name"])
