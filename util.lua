@@ -80,11 +80,14 @@ function SetJersey(player, teamInfo, pos)
 
             --Setting Helmet
             uniform.Helmet.Mesh.TextureId = (teamInfo["Colors"]["Jersey"][pos]["HelmetTexture"])
-            if not uniform.Helmet.RightLogo then
-		return
-	    else
-		Helm(player, teamInfo, pos)
-	    end
+
+            local logo = uniform.Helmet:WaitForChild("RightLogo")
+
+            if not logo
+		        return
+	        else
+		        Helm(player, teamInfo, pos)
+	        end
                         
             --Setting Upper Uniform
             uniform.ShoulderPads.Front.Team.Text = string.upper(teamInfo["Name"])
