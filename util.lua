@@ -58,6 +58,7 @@ end
 function Helm(player, teamInfo, pos)
     task.spawn(function()
 	print("Reached Helm")
+        local uniform = player.Character:WaitForChild("Uniform")
     	uniform.Helmet.RightLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
     	uniform.Helmet.LeftLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
     end)
@@ -84,10 +85,6 @@ function SetJersey(player, teamInfo, pos)
 	    else
 		return
 	    end
-
-	-- Set the texture for both "RightLogo" and "LeftLogo"
-	    uniform.Helmet.RightLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
-	    uniform.Helmet.LeftLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
                         
             --Setting Upper Uniform
             uniform.ShoulderPads.Front.Team.Text = string.upper(teamInfo["Name"])
