@@ -88,8 +88,8 @@ function SetJersey(player, teamInfo, pos)
 	    end
 	
 	-- Set the texture for both "RightLogo" and "LeftLogo"
-	    rightLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
-	    leftLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
+	    RightLogo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
+	    LeftLofo.Decal.Texture = teamInfo["Colors"]["Jersey"][pos]["Logo"]
                         
             --Setting Upper Uniform
             uniform.ShoulderPads.Front.Team.Text = string.upper(teamInfo["Name"])
