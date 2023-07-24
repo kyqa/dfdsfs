@@ -64,10 +64,6 @@ function SetJersey(player, teamInfo, pos)
         local uniform = player.Character:WaitForChild("Uniform")
         wait(0.5)
 
-        if not uniform:FindFirstChild("Helmet") then
-            return
-        end
-
         local helmet = uniform:FindFirstChild("Helmet")
 
 
