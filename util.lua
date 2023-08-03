@@ -129,15 +129,29 @@ function module:SetTeams(awayInfo, homeInfo)
     end
     Services["Workspace"].Models.Uprights1.FGparts.Base.Color = Color3.fromHex(module.Settings.HomeInfo.Colors.Normal.Main)
     Services["Workspace"].Models.Uprights2.FGparts.Base.Color = Color3.fromHex(module.Settings.HomeInfo.Colors.Normal.Main)
-	
-    Field.Grass.Normal.Mid.SurfaceGui.ImageLabel.Image = "rbxassetid://14143426558"
-    Field.Grass.Normal.Mid.SurfaceGui.ImageLabel.ScaleType = Enum.ScaleType.Fit
 
     -- Setting Field --
     local Field = Services["Workspace"].Models.Field
-    Field.Grass.Normal.Mid.SurfaceGui.ImageLabel.Image = "rbxassetid://14143426558"
-    Field.Grass.Endzone.One.SurfaceGui:Destroy()
-    Field.Grass.Endzone.Two.SurfaceGui:Destroy()
+    Field.Grass.Normal.Mid.SurfaceGui.ImageLabel.Image = getcustomasset(module.Settings["AssetsFolder"] .. module.Settings["HomeInfo"].City .. " " .. module.Settings["HomeInfo"].Name  .. "/Logo.png", false)
+    Field.Grass.Normal.Mid.SurfaceGui.ImageLabel.ScaleType = Enum.ScaleType.Fit
+
+    if (Field.Grass.Endzone.One:FindFirstChild("SurfaceGui")) then
+        print("[ENVIROMENT] Removing default Endzone Decal #1.")
+        Field.Grass.Endzone.One.SurfaceGui:Destroy()
+    end
+    if (Field.Grass.Endzone.Two:FindFirstChild("SurfaceGui")) then
+        print("[ENVIROMENT] Removing default Endzone Decal #2.")
+        Field.Grass.Endzone.Two.SurfaceGui:Destroy()
+    end
+
+    if (module.Settings.HomeInfo.Colors.Endzone) then
+        print("[ENVIROMENT] Setting Endzone Color #1.")
+        Field.Grass.Endzone.One.Color = Color3.fromHex(module.Settings.HomeInfo.Colors.Endzone)
+    end
+    if (module.Settings.AwayInfo.Colors.Endzone) then
+        print("[ENVIROMENT] Setting Endzone Color #2.")
+        Field.Grass.Endzone.Two.Color = Color3.fromHex(module.Settings.HomeInfo.Colors.Endzone)
+    end
 
     -- Setting Jerseys --
     for i,player in ipairs(Services["Players"]:GetPlayers()) do
