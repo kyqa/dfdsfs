@@ -132,49 +132,6 @@ function module:SetTeams(awayInfo, homeInfo)
 
     -- Setting Field --
     local Field = Services["Workspace"].Models.Field
-    Field.Grass.Normal.Mid.SurfaceGui.ImageLabel.Image = getcustomasset(module.Settings["AssetsFolder"] .. module.Settings["HomeInfo"].City .. " " .. module.Settings["HomeInfo"].Name  .. "/Logo.png", false)
-    Field.Grass.Normal.Mid.SurfaceGui.ImageLabel.ScaleType = Enum.ScaleType.Fit
-
-    if (Field.Grass.Endzone.One:FindFirstChild("SurfaceGui")) then
-        print("[ENVIROMENT] Removing default Endzone Decal #1.")
-        Field.Grass.Endzone.One.SurfaceGui:Destroy()
-    end
-    if (Field.Grass.Endzone.Two:FindFirstChild("SurfaceGui")) then
-        print("[ENVIROMENT] Removing default Endzone Decal #2.")
-        Field.Grass.Endzone.Two.SurfaceGui:Destroy()
-    end
-
-    if (module.Settings.HomeInfo.Colors.Endzone) then
-        print("[ENVIROMENT] Setting Endzone Color #1.")
-        Field.Grass.Endzone.One.Color = Color3.fromHex(module.Settings.HomeInfo.Colors.Endzone)
-    end
-    if (module.Settings.AwayInfo.Colors.Endzone) then
-        print("[ENVIROMENT] Setting Endzone Color #2.")
-        Field.Grass.Endzone.Two.Color = Color3.fromHex(module.Settings.HomeInfo.Colors.Endzone)
-    end
-
-    local endzoneOneLogo = Field.Grass.Endzone.One:FindFirstChild("ArtDecal")
-    if (endzoneOneLogo == nil) then
-        endzoneOneLogo = Instance.new("Decal")
-        endzoneOneLogo.Name = "ArtDecal"
-        endzoneOneLogo.Parent = Field.Grass.Endzone.One
-        print("[ENVIROMENT] Creating Endzone Decal #1.")
-    end
-    endzoneOneLogo.Texture = getcustomasset(module.Settings["AssetsFolder"] .. module.Settings["HomeInfo"].City .. " " .. module.Settings["HomeInfo"].Name  .. "/Endzone.png", false)
-    endzoneOneLogo.Face = 1
-    print("[ENVIROMENT] Set Endzone Decal #1.")
-
-    local endzoneTwoLogo = Field.Grass.Endzone.Two:FindFirstChild("ArtDecal")
-    if not (endzoneTwoLogo) then
-        endzoneTwoLogo = Instance.new("Decal")
-        endzoneTwoLogo.Name = "ArtDecal"
-        endzoneTwoLogo.Parent = Field.Grass.Endzone.Two
-        print("[ENVIROMENT] Creating Endzone Decal #2.")
-    end
-    endzoneTwoLogo.Texture = getcustomasset(module.Settings["AssetsFolder"] .. module.Settings["HomeInfo"].City .. " " .. module.Settings["HomeInfo"].Name  .. "/Endzone.png", false)
-    endzoneTwoLogo.Face = 1
-    print("[ENVIROMENT] Set Endzone Decal #2.")
-
 
     -- Setting Jerseys --
     for i,player in ipairs(Services["Players"]:GetPlayers()) do
@@ -187,42 +144,11 @@ function module:SetTeams(awayInfo, homeInfo)
     end
 end
 
-function module:Touchdown(isHomeTeam)
-    local path = module.Settings["AssetsFolder"] .. module.Settings["HomeInfo"].City .. " " .. module.Settings["HomeInfo"].Name  .. "/Fight Song.mp3"
-    if not (isHomeTeam) then
-        path = module.Settings["AssetsFolder"] .. module.Settings["AwayInfo"].City .. " " .. module.Settings["AwayInfo"].Name  .. "/Fight Song.mp3"
-    end
-
-    if (isHomeTeam) then
-        print("[ENVIROMENT] Playing " .. module.Settings["HomeInfo"].City .. "'s Touchdown Song.")
-    else
-        print("[ENVIROMENT] Playing " .. module.Settings["AwayInfo"].City .. "'s Touchdown Song.")
-    end
-
-    local sound = Instance.new("Sound")
-    sound.Volume = 1.5
-    sound.SoundId = getcustomasset(path,false)
-    sound.Parent = Services["Workspace"]
-    sound:Play()
-
-    task.spawn(function()
-        wait(30)
-        if (sound.IsPlaying) then
-            local tween = Services["Tween"]:Create(sound,TweenInfo.new(3,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),{Volume = 0})
-            tween:Play()
-            tween.Completed:Wait()
-        end
-        sound:Destroy()
-    end)
-end
 
 function module:SetTime(isDay)
     module.Settings.IsDay = isDay
 end
 
------------------------------------------------------------------------
--- Listeners
------------------------------------------------------------------------
 FFValues.Away.Changed:Connect(function(team)
     if (team and team:IsA("Team")) then
         team.PlayerAdded:Connect(function(player)
@@ -253,43 +179,6 @@ Services["Players"].PlayerAdded:Connect(function(player)
             SetJersey(player,module.Settings["AwayInfo"],"Away")
         end
     end)
-end)
-
-Services["UserInput"].InputBegan:Connect(function(input)
-    if not (input.KeyCode == Enum.KeyCode.F6) then
-        return
-    end
-
-    if (Services["Workspace"]:FindFirstChild("TargetLine")) then
-        print("[ENVIROMENT] Disabled the Field Goal Target Line.")
-        Services["Workspace"]:FindFirstChild("TargetLine"):Destroy()
-        return
-    end
-
-    local targetLine = Instance.new("Part")
-    targetLine.Size = Vector3.new(160, 2.4, 1)
-    targetLine.Transparency = 1
-    targetLine.CanCollide = false
-    targetLine.Anchored = true
-    targetLine.CanTouch = false
-    targetLine.Name = "TargetLine"
-
-    local texture = Instance.new("Texture")
-    texture.Texture = "rbxassetid://13183925348"
-    texture.StudsPerTileU = 20
-    texture.StudsPerTileV = 2.4
-    texture.Parent = targetLine
-
-    if (Services["Workspace"].LineDown.Position.Z > Services["Workspace"].LineTogo.Position.Z) then
-        targetLine.Position = Vector3.new(0, 2.5, -37.00)
-        targetLine.Orientation = Vector3.new(90,180,0)
-    else
-        targetLine.Position = Vector3.new(0, 2.5, 37.00)
-        targetLine.Orientation = Vector3.new(90,0,0)
-    end
-
-    targetLine.Parent = Services["Workspace"]
-    print("[ENVIROMENT] Enabled the Field Goal Target Line.")
 end)
 
 Services["Workspace"].DescendantAdded:Connect(function(model)
@@ -333,9 +222,6 @@ Services["Workspace"].DescendantAdded:Connect(function(model)
         end
     end
 end)
------------------------------------------------------------------------
--- Setup
------------------------------------------------------------------------
 
 for i,player in ipairs(Services["Players"]:GetPlayers()) do
     player.CharacterAdded:Connect(function(character)
