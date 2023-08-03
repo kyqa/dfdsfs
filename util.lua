@@ -129,9 +129,20 @@ function module:SetTeams(awayInfo, homeInfo)
     end
     Services["Workspace"].Models.Uprights1.FGparts.Base.Color = Color3.fromHex(module.Settings.HomeInfo.Colors.Normal.Main)
     Services["Workspace"].Models.Uprights2.FGparts.Base.Color = Color3.fromHex(module.Settings.HomeInfo.Colors.Normal.Main)
+	
+    Field.Grass.Normal.Mid.SurfaceGui.ImageLabel.Image = "rbxassetid://14143426558"
+    Field.Grass.Normal.Mid.SurfaceGui.ImageLabel.ScaleType = Enum.ScaleType.Fit
 
     -- Setting Field --
     local Field = Services["Workspace"].Models.Field
+    if (Field.Grass.Endzone.One:FindFirstChild("SurfaceGui")) then
+        print("[ENVIROMENT] Removing default Endzone Decal #1.")
+        Field.Grass.Endzone.One.SurfaceGui:Destroy()
+    end
+    if (Field.Grass.Endzone.Two:FindFirstChild("SurfaceGui")) then
+        print("[ENVIROMENT] Removing default Endzone Decal #2.")
+        Field.Grass.Endzone.Two.SurfaceGui:Destroy()
+    end
 
     -- Setting Jerseys --
     for i,player in ipairs(Services["Players"]:GetPlayers()) do
