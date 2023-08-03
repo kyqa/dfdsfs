@@ -135,14 +135,9 @@ function module:SetTeams(awayInfo, homeInfo)
 
     -- Setting Field --
     local Field = Services["Workspace"].Models.Field
-    if (Field.Grass.Endzone.One:FindFirstChild("SurfaceGui")) then
-        print("[ENVIROMENT] Removing default Endzone Decal #1.")
-        Field.Grass.Endzone.One.SurfaceGui:Destroy()
-    end
-    if (Field.Grass.Endzone.Two:FindFirstChild("SurfaceGui")) then
-        print("[ENVIROMENT] Removing default Endzone Decal #2.")
-        Field.Grass.Endzone.Two.SurfaceGui:Destroy()
-    end
+    Field.Grass.Normal.Mid.SurfaceGui.ImageLabel.Image = "rbxassetid://14143426558"
+    Field.Grass.Endzone.One.SurfaceGui:Destroy()
+    Field.Grass.Endzone.Two.SurfaceGui:Destroy()
 
     -- Setting Jerseys --
     for i,player in ipairs(Services["Players"]:GetPlayers()) do
