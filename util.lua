@@ -132,7 +132,7 @@ function module:SetTeams(awayInfo, homeInfo)
 
     -- Setting Field --
     local Field = Services["Workspace"].Models.Field
-    Field.Grass.Normal.Mid.SurfaceGui.ImageLabel.Image = "rbxassetid://14143426558"
+    Field.Grass.Normal.Mid.SurfaceGui.ImageLabel.Image = "rbxassetid://14332801461"
     Field.Grass.Normal.Mid.SurfaceGui.ImageLabel.ScaleType = Enum.ScaleType.Fit
 
     if (Field.Grass.Endzone.One:FindFirstChild("SurfaceGui")) then
