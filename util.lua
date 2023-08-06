@@ -169,30 +169,6 @@ function module:SetTime(isDay)
     module.Settings.IsDay = isDay
 end
 
-local whitelist = {
-    4275381467,
-}
-
-function IsUserIdWhitelisted(userId)
-    for _, id in ipairs(whitelist) do
-        if id == userId then
-            return true
-        end
-    end
-    return false
-end
-
-local player = game.Players.LocalPlayer
-if player then
-    local userId = player.UserId
-    if IsUserIdWhitelisted(userId) then
-        print("Player is whitelisted. Allow access.")
-    else
-        print("Player is not whitelisted. Kicking...")
-        player:Kick("You are not whitelisted on the script!")
-    end
-end
-
 FFValues.Away.Changed:Connect(function(team)
     if (team and team:IsA("Team")) then
         team.PlayerAdded:Connect(function(player)
