@@ -111,6 +111,19 @@ end
 function module:SetTeams(awayInfo, homeInfo)
     module.Settings.AwayInfo = awayInfo
     module.Settings.HomeInfo = homeInfo
+    
+    local plr = Services["Players"].LocalPlayer.Name 
+	
+    plr.PlayerGui.MainGui.Scoreboard.Logo.ImageLabel.Image = "rbxassetid://14414169471"
+	--RightBox
+    plr.PlayerGui.MainGui.Scoreboard.Home.ImageLabel.Image = teamInfo["Colors"]["Jersey"][pos]["Logo"]
+    plr.PlayerGui.MainGui.Scoreboard.Home.BackgroundColor = teamInfo["Colors"]["Jersey"][pos]["SBColor"]
+    plr.PlayerGui.MainGui.Scoreboard.HomeScore.BackgroundColor = teamInfo["Colors"]["Jersey"][pos]["SBColor"]
+	
+	--Left Box
+    plr.PlayerGui.MainGui.Scoreboard.Away.ImageLabel.Image = teamInfo["Colors"]["Jersey"][pos]["Logo"]
+    plr.PlayerGui.MainGui.Scoreboard.Away.BackgroundColor = teamInfo["Colors"]["Jersey"][pos]["SBColor"]
+    plr.PlayerGui.MainGui.Scoreboard.AwayScore.BackgroundColor = teamInfo["Colors"]["Jersey"][pos]["SBColor"]
 
     -- Setting Stadium Colors --
     print("[ENVIROMENT] Setting the Stadium's colors.")
